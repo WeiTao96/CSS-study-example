@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不同位置的交错动画</title>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+    <!-- 来源：https://juejin.im/post/5e070cd9f265da33f8653f00 -->
+    <div class="reveal">hello world!</div>
+    <script>
+        let duration = 0.8;
+        let delay = 0.3;
+        let revealText = document.querySelector('.reveal');
+        let letters = revealText.textContent.split('');
+        revealText.textContent = "";
+        let middle = letters.filter(e => e !=='').length / 2;
+        letters.forEach((letter, i) => {
+            let span = document.createElement('span');
+            span.textContent = letter;
+            span.style.animationDelay = `${delay + Math.abs(i-middle)*0.1}s`;
+            revealText.append(span);
+        });
+    </script>
+</body>
+</html>
